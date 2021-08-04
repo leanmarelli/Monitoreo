@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script> 
+    <title>Configuración de Prioridades</title>
+</head>
+<body>
+    <!-- CONFIGURACION DE PRIORIDADES - RUEDA DE CONFIGURACION DEL HEADER -->
+    <!-- HEADER -->
+    <header>
+        <nav class="monitoreo">
+            <a href="monitoreo.html" style="color:#fff;"><p>MONITOREO</p></a>
+            <div class="vistas-modificaciones">
+                Vistas
+                <div class="dropdown dropleft">
+                    <a class="btn" type="button" id="vistas" data-toggle="dropdown" aria-expanded="false"
+                        style="padding: 0;">
+                        <i class="fas fa-eye" style="margin: 0 4px;font-size: 1rem;width: 1.5rem;"></i>
+                    </a>
+                    <div class="dropdown-menu vistas-drop" aria-labelledby="vistas" style="border: 1px solid #2d9cdb;">
+                        <p style="padding: 5px 15; margin: 0;">VISTAS GUARDADAS</p>
+                        <a class="dropdown-item" href="#">Filtro San Nicolás</a>
+                        <a class="dropdown-item" href="#">Filtro MX Planta guerrero</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt" style="color: #666;"></i>Restaurar
+                            vista</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-save"></i>Guardar nueva vista</a>
+                        <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i>Eliminar vista</a>
+                    </div>
+                </div>
+                <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                <button class="botones-header">
+                    <i class="fas fa-bell" style="font-size: 1rem;"></i>
+                </button>
+                <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                <a class="botones-header" href="config.html">
+                    <i class="fas fa-cog" style="font-size: 1rem;"></i>
+                </a>
+                <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                <button type="button" data-target="#trace" data-toggle="modal" class="btn btn-sm botones-header">
+                    <i class="fas fa-ellipsis-v" style="font-size: 1rem;"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- FIN DE HEADER -->
+<!--MODAL CONFIGURACION DE PRIORIDADES -->
+
+<div style="padding: 10px; color: #666;">
+    <a href="monitoreo.html"><i class="fas fa-angle-double-left" style="position: absolute;left: 1.5rem;top: 3.6rem;color: #01688a;"></i></a>
+    <div style="margin-left: 3rem;">
+        <h6 style="font-weight: 400;">CONFIGURACIÓN DE PRIORIDADES</h6>
+        <p>(todos los campos son obligatorios)</p>
+    </div>
+
+    <div class="tres-selects">
+        <div>
+            <label for="">Seleccione la línea</label>
+            <select name="" id=""
+                style="width: 300px; padding: 4px; color: #666; border-color: #c4c4c4; border-radius: 5px;">
+                <option value="">SS-LAC-LAM (Laminación)</option>
+            </select>
+        </div>
+        <div>
+            <label for="">Rango para calcular tendencia</label>
+            <select name="" id=""
+                style="width: 300px; padding: 4px; color: #666; border-color: #c4c4c4; border-radius: 5px;">
+                <option value="">1 SEMANA</option>
+            </select>
+        </div>
+        <div>
+            <label for="">Rango para calcular acciones frecuentes</label>
+            <select name="" id=""
+                style="width: 300px; padding: 4px; color: #666; border-color: #c4c4c4; border-radius: 5px;">
+                <option value="">1 SEMANA</option>
+            </select>
+        </div>
+    </div>
+
+    <h5 class="formula-title">Fórmula</h5>
+    <div id="formula-container">
+        <div id="formula-1">
+            <div class="columnas">
+                <h6 style="font-size:14px">Criticidad (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Estratégico</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Crítico</p>
+                            <p>3</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No Crítico</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Origen (O)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Monitoreo</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Analitycs</p>
+                            <p>3</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Avisos manuales</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Tendencia (T)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Creciente</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Estable</p>
+                            <p>3</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Decreciente</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Tiempo Alerta (TA)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>a</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>b</p>
+                            <p>3</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>c</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Criticidad (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Estratégico</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Crítico</p>
+                            <p>3</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No Crítico</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Segunda columna -->
+        <div id="formula-2">
+            <div class="columnas">
+                <h6 style="font-size:14px">Impacto en calidad (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Si</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No</p>
+                            <p>3</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Impacto en seguridad (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Si</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No</p>
+                            <p>3</p>
+                        </div> 
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Impacto en disponibilidad (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Si</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No</p>
+                            <p>3</p>
+                        </div> 
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Impacto en costos (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Si</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>No</p>
+                            <p>3</p>
+                        </div> 
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tercer columna -->
+        <div id="formula-3">
+            <div class="columnas">
+                <h6 style="font-size:14px">Última acción (TA)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Aviso</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Descarte</p>
+                            <p>0</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Cuarentena</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="columnas">
+                <h6 style="font-size:14px">Acción más frecuente (C)</h6>
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; width: 40%; margin-right: 1rem; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Aviso</p>
+                            <p>5</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Descarte</p>
+                            <p>0</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>Cuarentena</p>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex;justify-content: center;align-items: center; flex-direction: column;margin: 0 1rem; width: 50%;font-size: 12px;">
+                        <label for="">Ponderación</label>
+                        <input type="number" name="" id="" style="width: 5rem;height: 1.8rem;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <div class="botones-footer">
+        <input class="btn btn-sm" type="button" onClick="window.open('monitoreo.html')" value="CANCELAR">
+        <button class="btn btn-sm" style="background-color: #01688a; color: #fff;">
+            MODIFICAR
+        </button>
+        <button class="btn btn-sm" style="background-color: #01688a; color: #fff;">
+            GUARDAR
+        </button>
+    </div>
+</footer>
+
+</body>
+</html>

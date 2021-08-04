@@ -1,0 +1,1611 @@
+<html>
+
+<head>
+    <title> Monitoreo </title>
+    <!-- hoja de estilo -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body> 
+    <div class="background"> 
+        <!-- TODOS LOS POPUPS - MODALS -->
+        <!--PopUp TRACE - tres puntitos del header -->
+        <div class="modal fade bd-example-modal-lg" id="trace" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="traceLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="padding: 1rem;">
+                    <h6>TRANSACCIONES (INFORMACIÓN DE SISTEMA)</h6>
+                    <table class="table table-borderless">
+                        <thead style="border-bottom: 3px solid #f90;">
+                            <tr>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col" style="text-align: end;">BACKEND TIME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">CHRONOLOGY MYVISION_GETCONFIG</td>
+                                <td style="text-align: end;">44MS</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">SAP-TERNIUM-ERP-U TPM_MOBILE_RESPON_IMAN</td>
+                                <td style="text-align: end;">1017MS</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">SAP-TERNIUM-ERP-U TPM_MOBILE_VERIFICA_LIDER</td>
+                                <td style="text-align: end;">1017MS</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">SAP-TERNIUM-ERP-U TPM_MOBILE_RESPON_IMAN</td>
+                                <td style="text-align: end;">1017MS</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">SAP-TERNIUM-ERP-U TPM_MOBILE_VERIFICA_LIDER</td>
+                                <td style="text-align: end;">1017MS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="trace-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PopUp de Teams  -->
+        <div class="modal fade bd-example-modal-lg" id="teams" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="teamsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 style="text-align: center; font-weight: 400; color: #666; margin: 15px;">
+                            Llamada a un experto vía Teams
+                        </h4>
+                        {...}
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PopUp de Whatsapp  -->
+        <div class="modal fade bd-example-modal-lg" id="whatsapp" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="whatsappLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 style="text-align: center; font-weight: 400; color: #666; margin: 15px;">
+                            Llamada a un experto vía WhatsApp
+                        </h4>
+                        {...}
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- PopUp En Cuarentena -->
+        <div class="modal fade" id="enCuarentena" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="enCuarentenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div style="display: flex; justify-content: center;">
+                            <i class="fas fa-exclamation"
+                                style="border: 3px solid #f90; color: #f90; border-radius: 500rem; font-size: 3rem; width: 80px; height: 80px; text-align: center; padding-top: 0.75rem;"></i>
+                        </div>
+                        <h4 style="text-align: center; font-weight: 400; color: #666; margin: 15px;">Poner
+                            en cuarentena</h4>
+                        <p>Las alertas seleccionadas se guardarán en el estado "En cuarentena"</p>
+                        <span>Seleccione el tiempo de espera en cuarentena</span>
+                        <div style="display: flex; justify-content: center; margin: 15px;">
+                            <button class="btn btn-light dropdown-toggle"
+                                style="font-size: 0.75rem; border: 1px #666 solid; margin-left: 5px;padding: 10px;color: #666;"
+                                class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static"
+                                aria-haspopup="true" aria-expanded="false">
+                                Tiempo determinado
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg-right nro-columnas-container"
+                                data-display="static" style="border: 1px solid #2d9cdb;">
+                                <p style="padding: 7px;">VISUALIZACIÓN DE COLUMNAS</p>
+                                <div class="dropdown-divider"></div>
+                                <p class="dropdown-item" href="#">12 horas</p>
+                                <p class="dropdown-item" href="#">24 horas</p>
+                                <p class="dropdown-item" href="#">48 horas</p>
+                                <p class="dropdown-item" href="#">72 horas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                        <button type="button" class="btn" style="background-color: #01688a; color: white;">PONER EN
+                            CUARENTENA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PopUp de Detalle  de MUY ALTA-->
+        <div class="modal fade bd-example-modal-lg" id="detalleMuyAlta" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="detalleLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 style="text-align: start; font-weight: 400; color: #666; font-size: 1.1rem; border-bottom: 1px solid #c4c4c4;padding-bottom: 8px;">
+                            SISTEMA DE PRIORIZACIÓN DE ALERTAS
+                        </h4>
+                        <div class="col-5 px-0">
+                            <table class="table-sm table-hover col-12" data-striped="true" style="margin: 1rem 0;border-top: 1px solid #666;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #f80;">
+                                        <th scope="col">ATRIBUTO</th>
+                                        <th scope="col">CLASIFICACIÓN</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="detalle-alertas" style="border: 1px solid #666;padding: 3px;">
+                                    <tr>
+                                        <th scope="row">Criticidad equipo</th>
+                                        <td style="color: #f30;">Estrategico</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fuente alerta</th>
+                                        <td>Sistema monitoreo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tendencia alerta</th>
+                                        <td style="color: #f30;">Creciente</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tiempo en alerta</th>
+                                        <td>12hs < t < 24hs</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tiempo de reacción</th>
+                                        <td>Medio</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Impacto seguridad</th>
+                                        <td>Bajo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Impacto disponibilidad</th>
+                                        <td style="color: #f30;">Alto</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Impacto costo</th>
+                                        <td>Medio</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Última acción</th>
+                                        <td>Cuarentena</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Acción mas frecuente</th>
+                                        <td>Generación MB</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="display: flex;">
+                                <p style="margin-right: 1rem; margin-bottom: 0;">SCORING ALERTA</p>
+                                <p>8.9</p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="margin-right: 1rem; margin-bottom: 0;">PRIORIDAD ALERTA</p>
+                                <button class="btn-sm btn-muy-alta" style="border: 1px solid #f30;width: max-content;background-color: #f30;color: #fff;">
+                                    <p style="width: max-content; margin: 0;">MUY ALTA</p>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-flex-end">
+                        <button type="button" class="btn" data-dismiss="modal" style="background-color: #01688A;color: #fff;">CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PopUp Descartados -->
+        <div class="modal fade" id="descartados" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="descartadosLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div style="display: flex; justify-content: center;">
+                            <i class="fas fa-exclamation"
+                                style="border: 3px solid #f90; color: #f90; border-radius: 500rem; font-size: 3rem; width: 80px; height: 80px; text-align: center; padding-top: 0.75rem;"></i>
+                        </div>
+                        <h4 style="text-align: center; font-weight: 400; color: #666; margin: 15px;">
+                            Descartar alerta/s</h4>
+                        <p style="text-align: center;">Se van a eliminar las alertas seleccionadas, las
+                            mismas se guardarán en "Descartados" por <b>30 días.</b></p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                        <button type="button" class="btn" style="background-color: #01688a; color: white;">DESCARTAR
+                            ALERTA/S</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <!-- PopUP Generar Aviso -->
+        <div class="modal fade bd-example-modal-lg" id="generarAviso" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="generarAvisoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header header-generar-aviso">
+                        <p>GENERAR AVISO</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times-circle"></i>
+                            <i class="fas fa-sort"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="generarAvisoContainer">
+                        <label for="equipo">Equipo</label>
+                        <div class="equipo-arbol">
+                            <input type="text" name="equipo" placeholder="HM-COL-CCO-PISO-TIJP">
+                            <a class="btn" style="background-color: #fff; border: 1px solid #666;"
+                                onclick="$('#generarAviso').modal('hide');$('#generarAvisoArbol').modal('show');">
+                                <i class="fas fa-sitemap" style="color: #2d9cdb; margin: 0 8px;"></i>Árbol
+                                de equipos
+                            </a>
+                        </div>
+                        <div class="column conjunto-container">
+                            <label for="conjunto">Conjunto</label>
+                            <select name="conjunto" id="conjunto" placeholder="Seleccionar conjunto"></select>
+                        </div>
+                        <div class="column">
+                            <label for="status-usuario">Status usuario</label>
+                            <select name="status-usuario" id="status-usuario" placeholder="Seleccionar status"></select>
+                        </div>
+                        <div class="column">
+                            <label for="descripción">Descripción</label>
+                            <select name="descripcion" id="descripcion" placeholder="Seleccionar descripción"></select>
+                        </div>
+                        <div class="column texto-extendido-container">
+                            <label for="texto-ext">Texto extendido</label>
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <br>
+                        <div class="generar-orden-container">
+                            <input type="checkbox" name="generar-orden" id="generar-orden">
+                            <label style="margin: 0 10px">Generar orden</label>
+                        </div>
+                        <div class="texto-cabecera-orden column">
+                            <label for="">Texto cabecera orden</label>
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="column">
+                            <label for="afectacion">Afectación</label>
+                            <select name="descripcion" id="descripcion" placeholder="Seleccionar afectacion"></select>
+                        </div>
+                        <div class="inicio-fin-deseado">
+                            <div class="column">
+                                <label for="inicio">Inicio deseado</label>
+                                <input type="date" name="inicio" id="inicio">
+                            </div>
+                            <div class="column">
+                                <label for="fin">Fin deseado</label>
+                                <input type="date" name="fin" id="fin">
+                            </div>
+                        </div>
+                        <div class="contenedor-gp column">
+                            <label for="grupo-planificador">Grupo planificador</label>
+                            <select name="grupo-planificador" id="grupo-planificador">Seleccionar
+                                grupo</select>
+                        </div>
+                        <div class="contenedor-pdt column">
+                            <label for="punto-trabajo">Punto de trabajo</label>
+                            <select name="punto-trabajo" id="punto-trabajo">Seleccionar grupo</select>
+                        </div>
+                        <div class="contenedor-po column">
+                            <label for="parte-objeto">Parte objeto</label>
+                            <select name="parte-objeto" id="parte-objeto">Seleccionar grupo</select>
+                        </div>
+                        <div class="contenedor-t column">
+                            <label for="tecnica">Técnica</label>
+                            <select name="tecnica" id="tecnica">Seleccionar tecnica</select>
+                        </div>
+                        <div class="column texto-causa-container">
+                            <label for="texto-causa">Texto causa</label>
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                        <button type="button" class="btn" style="background-color: #01688a; color: white;">GENERAR
+                            AVISO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL de ARBOL DE EQUIPO dentro de GENERAR AVISO -->
+        <div class="contenedor-botones">
+            <div class="modal fade" id="generarAvisoArbol" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="generarAvisoArbolLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="header-generarAvisoArbol">
+                            <p style="margin: 0;">ARBOL DE EQUIPO</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="generarAvisoArbolContainer">
+                            <label for="ubicacion-tecnica">UBICACION TECNICA</label>
+                            <div class="ubicacionTecnicaContainer">
+                                <input class="ubicacionTecnica" type="search" disabled placeholder="SS-LAC">
+                                <button class="ubicacionTecnicaSearch" type="submit">BUSCAR</button>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn" style="background-color: #01688a; color: white;">GENERAR
+                                AVISO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- FIN DE POPUPS -->
+
+        <!--*--*-- MONITOREO --*--*-->
+        <!-- HEADER -->
+        <header>
+            <nav class="monitoreo">
+                <p>MONITOREO</p>
+                <div class="vistas-modificaciones">
+                    Vistas
+                    <div class="dropdown dropleft">
+                        <a class="btn" type="button" id="vistas" data-toggle="dropdown" aria-expanded="false"
+                            style="padding: 0;">
+                            <i class="fas fa-eye" style="margin: 0 4px;font-size: 1rem;width: 1.5rem;"></i>
+                        </a>
+                        <div class="dropdown-menu vistas-drop" aria-labelledby="vistas" style="border: 1px solid #2d9cdb;">
+                            <p style="padding: 5px 15; margin: 0;">VISTAS GUARDADAS</p>
+                            <a class="dropdown-item" href="#">Filtro San Nicolás</a>
+                            <a class="dropdown-item" href="#">Filtro MX Planta guerrero</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt" style="color: #666;"></i>Restaurar
+                                vista</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-save"></i>Guardar nueva vista</a>
+                            <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i>Eliminar vista</a>
+                        </div>
+                    </div>
+                    <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                    <button class="botones-header">
+                        <i class="fas fa-bell" style="font-size: 1rem;"></i>
+                    </button>
+                    <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                    <a class="botones-header" href="config.html">
+                        <i class="fas fa-cog" style="font-size: 1rem;"></i>
+                    </a>
+                    <div style="background-color: #fff; width: 1px; height: 30px; margin: 0 .5rem;"></div>
+                    <button type="button" data-target="#trace" data-toggle="modal" class="btn btn-sm botones-header">
+                        <i class="fas fa-ellipsis-v" style="font-size: 1rem;"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <!-- FIN DE HEADER -->
+
+
+        <div class="first-container">
+            <div class="accordion" id="totalDeAlertas">
+                <!-- FILTROS -->
+                <!-- Boton izq naranja de filtro -->
+                <a data-toggle="modal" data-target="#leftModal">
+                    <i class="fas fa-columns" style="color: #FF9900;font-size: 25px; position: absolute; left: 1rem;top: 4rem"></i>
+                </a>
+
+                <!-- Modal de filtros naranja-->
+                <div class="modal fade modal-left" id="leftModal" tabindex="-1" aria-labelledby="leftModal"
+                    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-style" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLeft">FILTROS</h5>
+                            </div>
+
+                            <div class="accordion" id="filtros" style="height: 100%;">
+                                <div>
+                                    <!-- PAISES -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#paises" aria-expanded="true" aria-controls="paises">
+                                                <i class="fas fa-chevron-right rotate"></i><input style="margin: 0 5px;"
+                                                    type="checkbox"> Paises
+                                            </button>
+                                        </h2>
+                                        <div id="paises" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#paises">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <p><input type="checkbox"> Argentina <br></p>
+                                                <p><input type="checkbox"> Brasil <br></p>
+                                                <p><input type="checkbox"> Chile <br></p>
+                                                <p><input type="checkbox"> Colombia <br></p>
+                                                <p><input type="checkbox"> México <br></p>
+                                                <p><input type="checkbox"> Todos <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PLANTAS -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#plantas" aria-expanded="true" aria-controls="plantas">
+                                                <i class="fas fa-chevron-right rotate"></i><input type="checkbox"
+                                                    style="margin: 0 5px;">Plantas
+                                            </button>
+                                        </h2>
+                                        <div id="plantas" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#plantas">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <p><input type="checkbox"> Canning <br></p>
+                                                <p><input type="checkbox"> Ensenada <br></p>
+                                                <p><input type="checkbox"> Florencio Varela <br></p>
+                                                <p><input type="checkbox"> General Savio <br></p>
+                                                <p><input type="checkbox"> Haedo <br></p>
+                                                <p><input type="checkbox"> Rosario <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PROCESOS -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#procesos" aria-expanded="true" aria-controls="procesos">
+                                                <i class="fas fa-chevron-right rotate"></i><input type="checkbox"
+                                                    style="margin: 0 5px;">Procesos
+                                            </button>
+                                        </h2>
+                                        <div id="procesos" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#procesos">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <p><input type="checkbox"> Colada continua <br></p>
+                                                <p><input type="checkbox"> Colada continua 2 <br></p>
+                                                <p><input type="checkbox"> Colada continua 3 <br></p>
+                                                <p><input type="checkbox"> Colada continua 4 <br></p>
+                                                <p><input type="checkbox"> Colada continua 5 <br></p>
+                                                <p><input type="checkbox"> Colada continua 6 <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- LINEAS -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#lineas" aria-expanded="true" aria-controls="lineas">
+                                                <i class="fas fa-chevron-right rotate"></i><input type="checkbox"
+                                                    style="margin: 0 5px;">Líneas
+                                            </button>
+                                        </h2>
+                                        <div id="lineas" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#lineas">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <p><input type="checkbox"> Argentina <br></p>
+                                                <p><input type="checkbox"> Brasil <br></p>
+                                                <p><input type="checkbox"> Chile <br></p>
+                                                <p><input type="checkbox"> Colombia <br></p>
+                                                <p><input type="checkbox"> México <br></p>
+                                                <p><input type="checkbox"> Todos <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- SISTEMAS -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#sistemas" aria-expanded="true" aria-controls="sistemas">
+                                                <i class="fas fa-chevron-right rotate"></i><input type="checkbox"
+                                                    style="margin: 0 5px;">Sistemas
+                                            </button>
+                                        </h2>
+                                        <div id="sistemas" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#sistemas">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <p><input type="checkbox"> Argentina <br></p>
+                                                <p><input type="checkbox"> Brasil <br></p>
+                                                <p><input type="checkbox"> Chile <br></p>
+                                                <p><input type="checkbox"> Colombia <br></p>
+                                                <p><input type="checkbox"> México <br></p>
+                                                <p><input type="checkbox"> Todos <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- RANGO DE FECHAS -->
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#rangoDeFechas" aria-expanded="true"
+                                                aria-controls="rangoDeFechas">
+                                                <i class="fas fa-chevron-right rotate"></i><input type="checkbox"
+                                                    style="margin: 0 5px;">Rango de fechas
+                                            </button>
+                                        </h2>
+
+                                        <div id="rangoDeFechas" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#rangoDeFechas">
+                                            <div class="rango-fechas accordion-body" id="fechas">
+                                                <div class="btn-group">
+                                                    <button
+                                                        style="background-color: #fff; color: #666; border: 1px solid #666; padding: 8px; margin: 0.5rem 0;"
+                                                        class="btn btn-primary dropdown-toggle" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        Elegir fecha
+                                                    </button>
+                                                    <div class="dropdown-menu tratar-alertas"
+                                                        style="border: 1px solid #2d9cdb;">
+                                                        <a class="dropdown-item" href="#">AAAA</a>
+                                                        <a class="dropdown-item" href="#">BBBB</a>
+                                                        <a class="dropdown-item" href="#">CCCC</a>
+                                                        <a class="dropdown-item" data-toggle="collapse"
+                                                            href="#personalizado" role="button" aria-expanded="false"
+                                                            aria-controls="personalizado">Personalizado</a>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse multi-collapse" id="personalizado">
+                                                    <div style="margin-bottom: 1rem;">
+                                                        <input type="date"
+                                                            style="padding: 7px;border-radius: 5px;border: 1px solid #666;color: #666;">
+                                                    </div>
+                                                </div>
+
+                                                <select name="" id="">
+                                                    <option value="">TIEMPO DESDE ÚLTIMA ALERTA</option>
+                                                    <option value="">TIEMPO ACUMULADO EN ALERTA</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <!-- Boton de filtrar -->
+                                        <div style="display: flex; justify-content: flex-end;">
+                                            <button class="btn btn-sm btn-alta" style="border: 1px solid #ff9900;">
+                                                FILTRAR </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <br>
+                    </div>
+                </div> 
+                <div class="modal fade" id="personalizado" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    aria-labelledby="personalizadoLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="personalizadoTranslate">
+                            <div class="modal-header header-generar-aviso">
+                                <p>SELECCIONAR FECHA</p>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="personalizadoContainer">
+                                <div id="date">
+                                    <input type="date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN DE FILTRO -->
+ 
+                <!-- LLAMADA A UN EXPERTO - HEADPHONES -->
+                <div id="headphones" class="btn-group dropleft">
+                    <button style="font-size: 1rem; padding: 10px; background-color: #01688a;border-radius: 10px;"
+                        class="btn btn-sm dropdowns" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fas fa-headphones"></i>
+                    </button>
+                    <div class="dropdown-menu" style="border: 1px solid #2d9cdb;">
+                        <div class="body-llamada-experto">
+                            <h5>LLAMADA A UN EXPERTO</h5>
+                            <div class="headphones-btn-container">
+                                <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#teams">
+                                    <img src="https://img.icons8.com/fluent/48/000000/microsoft-teams-2019.png" /> TEAMS
+                                </a>
+                                <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#whatsapp">
+                                    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" /> WhatsApp Web
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Previous - Carousel -->
+                <div id="previous">
+                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                        <i class="fas fa-chevron-left" style="color: #01688a;"></i>
+                    </a>
+                </div>
+                
+                <!-- Next - Carousel -->
+                <div id="next">
+                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                        <i class="fas fa-chevron-right" style="color: #01688a;"></i>
+                    </a>
+                </div>
+
+                <!--TOTAL DE ALERTAS - ACCORDION-->
+                <!-- Accordion -->
+                <div id="totalDeAlertas"> 
+                    <div class="card accordion-sm" style="border: 0;">
+                        <div class="card-header" style="padding: 0;" id="headingOne">
+                            <h2 class="mb-0" style="background-color: white; border: 1px solid #c4c4c4;">
+                                <button id="totalAlertas1" class="btn text-left total-de-alertas"
+                                    style="background-color: #01688a; color: white; border-radius: 0px; height: 52x; padding: 0rem 1.5rem;"
+                                    type="button" data-toggle="collapse" data-target="#accExpand" aria-expanded="true"
+                                    aria-controls="accExpand">
+                                    <div
+                                        style="display: flex; justify-content: space-between; flex-direction: row; align-items: center;">
+                                        <div style="display: flex; align-items: center;">
+                                            <span style="font-size: 2.2rem; color: #fff;">1021</span> &nbsp;
+                                            <span style="color: #fff; margin-left: 1rem;">Total de alertas</span>
+                                        </div>
+                                    </div>
+                                </button>
+                                <p class="btn filtros-aplicados">Filtros aplicados:</p>
+                                <button class="btn btn-sm btn-filtros"
+                                    style="border: 1px solid #c4c4c4; border-radius: 20px;font-size: 0.75rem;">AR &nbsp;
+                                    <i class="fas fa-times"></i></button>
+                                <span style="font-weight: 200; color: #c4c4c4; font-size: 25px; margin: 0 5px;">|</span>
+                                <button class="btn btn-sm btn-filtros"
+                                    style="border: 1px solid #c4c4c4; border-radius: 20px;font-size: 0.75rem;">SAN
+                                    NICOLÁS
+                                    &nbsp; <i class="fas fa-times"></i></button>
+                                <button class="btn btn-sm btn-filtros"
+                                    style="border: 1px solid #c4c4c4; border-radius: 20px;font-size: 0.75rem;">ENSENADA
+                                    &nbsp; <i class="fas fa-times"></i></button>
+                                <span style="font-weight: 200; color: #c4c4c4; font-size: 25px; margin: 0 5px;">|</span>
+                                <button class="btn btn-sm btn-filtros"
+                                    style="border: 1px solid #c4c4c4; border-radius: 20px;font-size: 0.75rem;">COLADA
+                                    CONTINUA &nbsp; <i class="fas fa-times"></i></button>
+
+                                <!-- Boton de expandir accordion (+) -->
+                                <button id="totalAlertas2" class="btn btn-sm ocultar-tablet"
+                                    style="border: none; text-decoration: none; background-color: transparent; position: absolute; right: 1rem; top: .9rem;"
+                                    type="button" data-toggle="collapse" data-target="#accExpand" aria-expanded="true"
+                                    aria-controls="accExpand">
+                                    <i class="fas fa-plus-square" style="font-size: 18px; color: #c4c4c4;"></i>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <!-- Carousel del Accordion -->
+                        <div id="accExpand" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#totalDeAlertas" class="container-fluid">
+                            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="false">
+                                <div id="carousel-container" class="carousel-inner d-flex flex-wrap">
+                                    <!-- Tipos de Alertas - accordion -->
+                                    <div class="carousel-item col-md-3 col-sm-5 active px-0">
+                                        <div class="panel panel-default">
+                                            <div class="panel-thumbnail">
+                                                <div class="alerta-1">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <h6 style="font-size: .8rem; margin-bottom: .5rem;">Tipos de
+                                                            alertas
+                                                        </h6>
+                                                        <i class="fas fa-redo-alt"></i>
+                                                    </div>
+                                                    <ul class="tipos-de-alertas">
+                                                        <button class="btn">
+                                                            <li>
+                                                                <ul style="font-size: .9rem;">
+                                                                    <li> 
+                                                                        <i class="fas fa-chart-line"></i>Analiticos predictivos
+                                                                    </li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button class="btn">
+                                                            <li>
+                                                                <ul style="font-size: .9rem;">
+                                                                    <li> 
+                                                                        <i class="fas fa-exclamation-triangle"></i> Monitoreo
+                                                                    </li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button class="btn">
+                                                            <li>
+                                                                <ul style="font-size: .9rem;">
+                                                                    <li><i class="fas fa-clipboard-list"></i>
+                                                                        Inspecciones
+                                                                    </li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button class="btn">
+                                                            <li>
+                                                                <ul style="font-size: .9rem;">
+                                                                    <li><i class="far fa-flag"></i>Predictivo manual
+                                                                    </li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button class="btn">
+                                                            <li>
+                                                                <ul style="font-size: .9rem;">
+                                                                    <li>
+                                                                        <i class="fas fa-certificate"></i>Calidad
+                                                                    </li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Alertas en Equipos - accordion -->
+                                    <div class="carousel-item col-md-3 col-sm-5 px-0">
+                                        <div class="panel panel-default">
+                                            <div class="panel-thumbnail">
+                                                <div class="alerta-2">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <h6 style="font-size: .8rem; margin-bottom: .5rem">Alertas en
+                                                            equipos
+                                                            (Criticidad)</h6>
+                                                        <i class="fas fa-redo-alt"></i>
+                                                    </div>
+                                                    <ul class="alertas-equipos">
+                                                        <button style="width: 45%;">
+                                                            <li>
+                                                                <ul>
+                                                                    <li style="font-size: 0.9rem;">Estratégicos</li>
+                                                                    <li style="font-size: 1.8rem;">4</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button style="width: 45%;">
+                                                            <li>
+                                                                <ul>
+                                                                    <li style="font-size: 0.9rem;">Críticos</li>
+                                                                    <li style="font-size: 1.8rem;">0</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button style="width: 45%;">
+                                                            <li>
+                                                                <ul>
+                                                                    <li style="font-size: 0.9rem;">No Crítico</li>
+                                                                    <li style="font-size: 1.8rem;">300</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                        <button style="width: 45%;">
+                                                            <li>
+                                                                <ul>
+                                                                    <li style="font-size: 0.9rem;">Sin Equipo</li>
+                                                                    <li style="font-size: 1.8rem;">145</li>
+                                                                </ul>
+                                                            </li>
+                                                        </button>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Duración de alertas - accordion -->
+                                    <div class="carousel-item col-md-3 col-sm-5 px-0">
+                                        <div class="panel panel-default">
+                                            <div class="panel-thumbnail">
+                                                <div class="alerta-3">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <h6 style="font-size: .8rem; margin-bottom: .5rem;">Duración de
+                                                            alertas</h6>
+                                                        <i class="fas fa-redo-alt"></i>
+                                                    </div>
+                                                    <div style="display: flex;">
+                                                        <ul class="izquierda-dda">
+                                                            <li><button class="btn btn-sm">> 2 días</button></li>
+                                                            <li><button class="btn btn-sm">1 - 2 días</button> </li>
+                                                            <li><button class="btn btn-sm">12 - 24 hs</button></li>
+                                                            <li><button class="btn btn-sm">
+                                                                    < 12 hs</button>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="derecha-dda">
+                                                            <li>
+                                                                <div class="progress" style="border-radius: 8px; margin-bottom: .75rem;">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        style="width: 20%; background-color: #01688a; border-radius: 8px;"
+                                                                        aria-valuenow="10" aria-valuemin="0"
+                                                                        aria-valuemax="100">
+                                                                        1
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="progress" style="border-radius: 8px; margin-bottom: .75rem;">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        style="width: 30%; background-color: #429bd5; border-radius: 8px;"
+                                                                        aria-valuenow="25" aria-valuemin="0"
+                                                                        aria-valuemax="100">
+                                                                        3
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="progress" style="border-radius: 8px; margin-bottom: .75rem;">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        style="width: 60%; background-color: #84bee3; border-radius: 8px;"
+                                                                        aria-valuenow="50" aria-valuemin="0"
+                                                                        aria-valuemax="100">
+                                                                        5
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="progress" style="border-radius: 8px; margin-bottom: .75rem;">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        style="width: 90%;  background-color: #c7e1f3; border-radius: 8px;"
+                                                                        aria-valuenow="100" aria-valuemin="0"
+                                                                        aria-valuemax="100">
+                                                                        7
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- Estado - accordion -->
+                                    <div class="carousel-item col-md-3 col-sm-5 px-0">
+                                        <div class="panel panel-default">
+                                            <div class="panel-thumbnail">
+                                                <div class="alerta-5">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <h6 style="font-size: .80rem; margin-bottom: 0.5rem;">Estados de
+                                                            alerta</h6>
+                                                        <i class="fas fa-redo-alt"></i>
+                                                    </div>
+                                                    <div style="display: flex;">
+                                                        <ul class="impacto-btn">
+                                                            <li style="display: flex; align-items: center;">
+                                                                <button class="btn">
+                                                            <li>
+                                                                <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                    <li>Sin tratar</li>
+                                                                    <li>420</li>
+                                                                </ul>
+                                                            </li></button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <button class="btn">
+                                                            <li>
+                                                                <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                    <li>En tratamiento</li>
+                                                                    <li>402</li>
+                                                                </ul>
+                                                            </li>
+                                                            </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <button class="btn">
+                                                            <li>
+                                                                <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                    <li>En cuarentena</li>
+                                                                    <li>240</li>
+                                                                </ul>
+                                                            </li>
+                                                            </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul
+                                                                            style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Descartados</li>
+                                                                            <li>42</li>
+                                                                        </ul>
+                                                                    </li>
+                                                            </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <button class="btn">
+                                                            <li>
+                                                                <ul
+                                                                    style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                    <li>Todos</li>
+                                                                    <li>0</li>
+                                                                </ul>
+                                                            </li>
+                                                            </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Impacto - accordion-->
+                                    <div class="carousel-item col-md-3 col-sm-5 px-0">
+                                        <div class="panel panel-default">
+                                            <div class="panel-thumbnail">
+                                                <div class="alerta-4">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <h6 style="font-size: .80rem; margin-bottom: 0.5rem;">Impacto
+                                                        </h6>
+                                                        <i class="fas fa-redo-alt"></i>
+                                                    </div>
+                                                    <div style="display: flex;">
+                                                        <ul class="impacto-btn">
+                                                            <li style="display: flex; align-items: center;">
+                                                                <div style="width:0.5rem; height: 0.5rem; background-color: #364a5c;">
+                                                                </div>
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Costo</li>
+                                                                            <li>420</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <div style="width:0.5rem; height: 0.5rem; background-color: #429bd5;">
+                                                                </div>
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Seguridad</li>
+                                                                            <li>402</li>
+                                                                        </ul>
+                                                                    </li>
+                                                            </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <div style="width:0.5rem; height: 0.5rem; background-color: #429bd5a7;">
+                                                                </div>
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Disponibilidad</li>
+                                                                            <li>240</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <div style="width: 0.5rem; height: 0.5rem; background-color: #68a7d19a;">
+                                                                </div>
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Calidad</li>
+                                                                            <li>42</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </button>
+                                                            </li>
+                                                            <li style="display: flex; align-items: center;">
+                                                                <div style="width:0.5rem; height: 0.5rem; background-color: #e4e4e4;">
+                                                                </div>
+                                                                <button class="btn">
+                                                                    <li>
+                                                                        <ul style="display: flex; justify-content: space-between;font-size: .9rem;">
+                                                                            <li>Sin Clasificar</li>
+                                                                            <li>0</li>
+                                                                        </ul>
+                                                                    </li>
+                                                            </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TERMINA EL TOTAL DE ALERTAS - ACCORDION -->
+
+        <!-- Listado de alertas (tabla) y arbol, mapa y ranking -->
+        <div class="apartado-inferior">
+            <!-- ARBOL MAPA RANKING -->
+            <div class="second-container">
+                <div class="btnExpandSm" style="display: flex; justify-content: flex-end;">
+                    <a id="btnExpand" class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target="#expanirArMaRa" aria-expanded="false" aria-controls="expanirArMaRa"
+                        style="background-color: transparent; text-decoration: 0; border: 0;">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </a>
+                </div>
+                <!-- COLLAPSE de Arbol, Mapa y Ranking-->
+                <div class="collapse" id="expanirArMaRa">
+                    <div class="card card-body armara-collapse" style="border: 0;">
+                        <div class="accordion-header" id="flush-headingOne">
+
+                            <!-- Arbol de equipo when collapse -->
+                            <button id="" class="btn-armara" type="button" data-toggle="collapse"
+                                data-target="#arbolDeEquipo" aria-expanded="true" aria-controls="arbolDeEquipo">
+                                ARBOL DE EQUIPO
+                            </button>
+                            <!-- Mapa de calor when collapse-->
+                            <button class="btn-armara" type="button" data-toggle="collapse" data-target="#mapaDeCalor"
+                                aria-expanded="false" aria-controls="mapaDeCalor" style="margin: 0 5px;">
+                                MAPA DE CALOR
+                            </button>
+                            <!-- Ranking when collapse-->
+                            <button class="btn-armara" type="button" data-toggle="collapse" data-target="#ranking"
+                                aria-expanded="false" aria-controls="ranking">
+                                RANKING
+                            </button>
+                            <div class="ubicacion" style="margin: 1rem 0;">
+                                <p><b>Argentina</b> &nbsp; > &nbsp; Canning &nbsp;| &nbsp;Colada continua</p>
+                            </div>
+
+                            <!-- Arbol de equipo collapse-->
+                            <div class="collapse multi-collapse arbolDeEquipo" id="arbolDeEquipo">
+                                <div class="card card-body" style="padding: 0; border: 0;">
+                                    <button class="btn arbol-filter"><i class="fas fa-filter"></i>Filtros</button>
+                                    <div class="items-filtros" id="headingOne">
+                                        <h2 class="mt-4">
+                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                                data-target="#plantaCanning" aria-expanded="true"
+                                                aria-controls="plantaCanning">
+                                                <div style="display: flex; align-items: center;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    <span>PLANTA CANNING</span>
+                                                </div>
+                                            </button>
+                                        </h2>
+
+                                        <div id="plantaCanning" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#plantaCanning">
+                                            <div class="accordion-body" style="margin-left: 1rem;">
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px; ">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                                <div style="display: flex; align-items: center; margin: 10 0px;">
+                                                    <i class="fas fa-chevron-right rotate"></i>
+                                                    <input style="margin: 0 5px;" type="checkbox">
+                                                    <div
+                                                        style="background-color: #ff9900; border-radius: 9px; width: 15px; height: 15px; text-align: center; margin-right: 8px;">
+                                                    </div>
+                                                    LABORATORIO CANNING
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mapa de calor collapse-->
+                            <div class="collapse multi-collapse mapaDeCalor" id="mapaDeCalor">
+                                <div class="card card-body" style="border: 0;">
+                                    <a data-toggle="collapse" href="#caster2" role="button" aria-expanded="false"
+                                        aria-controls="caster2" style="text-decoration:none">
+                                        <div class="caster2">
+                                            CASTER 2 (100)
+                                        </div>
+                                    </a>
+                                    <div class="caster3">
+                                        CASTER 3 (921)
+                                    </div>
+                                    <div class="points-priority">
+                                        <div class="points">
+                                            <div
+                                                style="background-color: #f30; border-radius: 9px; width: 15px; height: 15px; margin-right: 8px; box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);;">
+                                            </div>
+                                            <p>Muy alta</p>
+                                        </div>
+                                        <div class="points">
+                                            <div
+                                                style="background-color: #f90; border-radius: 9px; width: 15px; height: 15px; margin-right: 8px; box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);;">
+                                            </div>
+                                            <p>Alta</p>
+                                        </div>
+                                        <div class="points">
+                                            <div
+                                                style="background-color: #ffd27c; border-radius: 9px; width: 15px; height: 15px; margin-right: 8px; box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);;">
+                                            </div>
+                                            <p>Media</p>
+                                        </div>
+                                        <div class="points">
+                                            <div
+                                                style="background-color: #ffe9ce; border-radius: 9px; width: 15px; height: 15px; margin-right: 8px; box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);;">
+                                            </div>
+                                            <p>Baja</p>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="caster2">
+                                        <button class="btn">SUBIR UN NIVEL</button>
+                                        <div class="container-caster-box">
+                                            <div class="col-3 caster-box">
+                                                TIJERA
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                SEGMENTO 3 (100)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                SEGMENTO 3 (40)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                PINCH ROLL (3)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                ENDEREZADORA (112)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                DUMMY BAR (122)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                OSCILADOR HIDRÁULICO (34)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                SEGMENTO 1 (12)
+                                            </div>
+                                            <div class="col-3 caster-box">
+                                                BENDING ROLL (248)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ranking collapse-->
+                            <div class="collapse multi-collapse arbolDeEquipo" id="ranking">
+                                <div class="card card-body" style="padding: 0; border: 0;">
+                                    <div class="ranking-impar">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>250</div>
+                                        </div>
+                                    </div>
+                                    <div class="ranking-par">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>200</div>
+                                        </div>
+                                    </div>
+                                    <div class="ranking-impar">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 40%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>150</div>
+                                        </div>
+                                    </div>
+                                    <div class="ranking-par">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">  &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+                                    <div class="ranking-impar">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>50</div>
+                                        </div>
+                                    </div>
+                                    <div class="ranking-par">
+                                        <p style="margin-bottom: 0">Laminacion en caliente 1</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="progress-ranking" style="border: 1px solid #d4eeff;">
+                                                <div class="progress-bar" role="progressbar" style="width: 5%; background-color: #d4eeff; height: 17px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div>25</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones cuando el collapse está cerrado -->
+                <div id="armara" class="contenedor-armara" style="padding: 1px;">
+                    <button id="arbol" style="display: block; padding-top: 2px;" type="button" data-toggle="collapse"
+                        data-target="#expanirArMaRa" aria-expanded="false" aria-controls="expanirArMaRa">
+                        <li><i class="fas fa-sitemap"></i></li>
+                        <li>Árbol de equipo</li>
+                    </button>
+                    <button id="mapa" style="display: block; padding-top: 5px;" type="button" data-toggle="collapse"
+                        data-target="#expanirArMaRa" aria-expanded="false" aria-controls="expanirArMaRa">
+                        <li><i class="fas fa-th"></i></li>
+                        <li>Mapa de calor</li>
+                    </button>
+                    <button id="rankingg" style="display: block; padding-top: 10px;" type="button"
+                        data-toggle="collapse" data-target="#expanirArMaRa" aria-expanded="false"
+                        aria-controls="expanirArMaRa">
+                        <li><i class="fas fa-poll"></i></li>
+                        <li>Ranking</li>
+                    </button>
+                </div>
+            </div> 
+            <!-- FIN DE ARBOL - MAPA - RANKING -->
+
+            <!-- LISTADO DE ALERTAS -->
+            <div id="listadoDeAlertas" class="listado-alertas">
+                <div class="listado-alertasSeleccionadas">
+                    <div id="listado-title-responsive" style="display: flex; justify-content: space-between;">
+                        <div style="display: flex;">
+                            <h3>ALERTAS</h3>
+                            <div style="background-color: #666; width: 1px; height: 30px; margin: .5rem .5rem;"></div>
+                            <h3 style="color: #01688a;">Seleccionadas 17</h3>
+                        </div>
+                        <!-- Prioridad y Tratar alertas -->
+                        <div class="prioridad">
+                            <ul>
+                                <li>
+                                    <button class="btn-sm btn-muy-alta" style="border: 1px solid #f30;">
+                                        <p style="width: max-content; margin: 0;">MUY ALTA</p>
+                                        <p style="width: max-content; margin: 0;"><b>2000</b></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="btn-sm btn-alta" style="border: 1px solid #f19e39">
+                                        <p style="width: max-content; margin: 0;">ALTA</p>
+                                        <p style="width: max-content; margin: 0;"><b>555</b></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="btn-sm btn-media" style="border: 1px solid #ffd27c;">
+                                        <p style="width: max-content; margin: 0;">MEDIA</p>
+                                        <p style="width: max-content; margin: 0;"><b>820</b></p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="btn-sm btn-baja" style="border: 1px solid #ffe9ce;">
+                                        <p style="width: max-content; margin: 0;">BAJA</p>
+                                        <p style="width: max-content; margin: 0;"><b>4620</b></p>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="tratar-alertas-container">
+                                <div style="display: flex;">
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Tratar alertas
+                                        </button>
+                                        <div class="dropdown-menu tratar-alertas" style="border: 1px solid #2d9cdb;">
+                                            <p style="padding: 5px 15; margin: 0;">TRATAR ALERTAS</p>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Solicitar Inspección Manual</a>
+                                            <a class="dropdown-item" href="#">Solicitar Predictivo Manual</a>
+                                            <a class="dropdown-item" href="#">Solicitar Reparacion</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#generarAviso"
+                                                type="button">Generar Aviso
+                                                MB</a>
+                                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#enCuarentena">Poner en cuarentena</a>
+                                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#descartados">Descartar alertas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones, Columnas y Buscador -->
+                <div id="mostrar-registros-responsive" style="display: flex; justify-content: space-between;border-bottom: 1px solid #c4c4c4;">
+                    <div style="display: flex;align-items: center;font-size: 12px;">
+                        MOSTRAR
+                        <input type="search"
+                            style="border: 1px solid #c4c4c4; width: 3rem;height: 1.5rem; border-radius: 4px; margin: 0 .5rem;">
+                        REGISTROS
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 1rem;">
+                        <button class="btn-listado-detalle">
+                            Listado
+                        </button>
+                        <button class="btn-listado-detalle">
+                            Detalle
+                        </button>
+                        <button
+                            style="width: max-content; height: max-content; background-color: #01688a;border-radius: 5px;margin: 0 1rem ; font-size: 1rem; padding: 5px"
+                            class="btn btn-sm dropdowns" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" data-display="static">
+                            <i class="fas fa-bars" style="color: white;  transform: rotate(90deg)"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg-right nro-columnas-container" data-display="static"
+                            style="border: 1px solid #2d9cdb;font-size: 14px;">
+                            <p style="padding: 7px;">VISUALIZACIÓN DE COLUMNAS</p>
+                            <div class="dropdown-divider"></div>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Proceso</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Línea
+                            </p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Sistema</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Subsistema</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Criticidad</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Descripción
+                            </p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Cantidad</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Duración</p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Equipo
+                            </p>
+                            <p class="dropdown-item" href="#"><input style="margin-right: 7px;" type="checkbox" name=""
+                                    id="">Último
+                                evento</p>
+                        </div>
+                        <div class="buscador">
+                            <div>
+                                <input type="search">
+                            </div>
+                            <button class="btn">
+                                <i class="fas fa-search" style="color: #999;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla -->
+                <div class="table-container">
+                    <div class="table-responsive-lg table-responsive-md table-responsive-lg table-responsive-xxl"
+                        style="overflow: hidden;">
+                        <table class="table-sm table-striped" style="width: 100%; border-spacing: 5rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid #f90;">
+                                    <th class="col-0.5" scope="col"></th>
+                                    <th scope="col-0.5"></th>
+                                    <th class="col-3" scope="col">Subsistema <i class="fas fa-sort" style="margin: 0 auto; position: absolute; right: 2px; font-size: 20px;"></i></th>
+                                    <th class="col-1" scope="col">Equipo<i class="fas fa-sort" style="margin: 0 auto; position: absolute; right: 2px; font-size: 20px;"></i></th>
+                                    <th class="col-1" scope="col">Criticidad<i class="fas fa-sort" style="margin: 0 auto; position: absolute; right: 2px; font-size: 20px;"></i></th>
+                                    <th class="col-4" scope="col">Descripción </th>
+                                    <th class="col-2" scope="col">Último evento<i class="fas fa-sort" style="margin: 0 auto; position: absolute; right: 2px; font-size: 20px;"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <th class="border-left-x" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-clipboard-list"></i></th>
+                                    <td>Sistema de adorsión CO2 4M</td>
+                                    <td>26001026</td>
+                                    <td>Estratégico</td>
+                                    <td>Bom. Vacío 662 Mot/Red Ajuste separacion</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-o" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-chart-line"></i></th>
+                                    <td>Sistema auxiliares de fuchs</td>
+                                    <td>26001026</td>
+                                    <td>Crítico</td>
+                                    <td>Esoria en estrucutura lado poniente largo</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-x" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-clipboard-list"></i></th>
+                                    <td>Sistema de adorsión CO2 4M</td>
+                                    <td>26001026</td>
+                                    <td>Crítico</td>
+                                    <td>Bom. Vacío 662 Mot/Red Ajuste separacion</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-o" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-chart-line"></i></th>
+                                    <td>Sistema auxiliares de fuchs</td>
+                                    <td>26001017</td>
+                                    <td>Sin equipo</td>
+                                    <td>Esoria en estrucutura lado poniente largo</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <div>
+                                    <th class="border-left-x" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-clipboard-list"></i></th>
+                                    <td>Sistema de adorsión CO2 4M</td>
+                                    <td>26001017</td>
+                                    <td>Crítico</td>
+                                    <td>Bom. Vacío 662 Mot/Red Ajuste separacion</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </div>
+                                <tr>
+                                    <th class="border-left-o" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-chart-line"></i></th>
+                                    <td>Sistema auxiliares de fuchs</td>
+                                    <td>26001026</td>
+                                    <td>Crítico</td>
+                                    <td>Esoria en estrucutura lado poniente largo</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-x" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-clipboard-list"></i></th>
+                                    <td>Sistema de adorsión CO2 4-M</td>
+                                    <td>26001017</td>
+                                    <td>Estratégico</td>
+                                    <td>Bom. Vacío 662 Mot/Red Ajuste separacion</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-o" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-chart-line"></i></th>
+                                    <td>Sistema auxiliares de fuchs</td>
+                                    <td>26001026</td>
+                                    <td>Estratégico</td>
+                                    <td>Esoria en estrucutura lado poniente largo</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                                <tr>
+                                    <th class="border-left-x" scope="row" class="btn-sm btn-muy-alta"  type="button" 
+                                    data-toggle="modal" data-target="#detalleMuyAlta"><input style="margin: .6rem 0 0 1.5rem;" type="checkbox">
+                                    </th>
+                                    <th scope="row"><i class="fas fa-clipboard-list"></i></th>
+                                    <td>Sistema de adorsión CO2 4-M</td>
+                                    <td>26001017</td>
+                                    <td>Estratégico</td>
+                                    <td>Bom. Vacío 662 Mot/Red Ajuste separacion</td>
+                                    <td>09/12/18 - 10:08hrs</td>
+                                </tr>
+                    </div>
+                    </tbody>
+                    </table>
+
+                    <!-- Navegacion - Paginador -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link previous" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link next" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- FIN LISTADO DE ALERTAS -->
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
